@@ -1,0 +1,31 @@
+# query_ner_template.yaml
+entities:
+  - label: Symptoms
+    description: 患者症状描述（包含主诉、现病史、持续时间等）
+    example: "间断性头晕1月。患者自述1月前因劳累出现间断头晕，无头痛，无视物旋转，无双下肢无力，休息后症状有所缓解，但未完全消失，尤以劳累后症状明显，目下症见：患者神清，精神尚可，间断性头晕，食纳欠佳，夜寐尚可，二便调。舌红，苔白腻，脉滑。"
+    instruction: 提取所有临床症状描述，包含持续时间、加重情况等细节
+    
+  - label: Diseases
+    description: 已明确诊断的疾病名称
+    example: "眩晕"
+    instruction: 从候选疾病列表中选择匹配的疾病名称
+    candidates: ["呕吐", "眩晕", "感冒", "肺炎"] # Disease Candidate List
+
+intents:
+  candidates: ["辩证", "诊断", "治疗建议", "预后评估"]  # Intent Candidate List
+  items:
+    - task: "辩证"
+      description: 根据四诊信息进行中医证候分析
+    - task: "诊断" 
+      description: 确定疾病诊断结果
+    - task: "治疗建议"
+      description: 获取治疗方案建议
+    - task: "预后评估"
+      description: 预测疾病发展及康复情况
+
+output_format:
+  intents:
+    type: array
+    items:
+      type: string
+      enum: ["辩证", "诊断", "治疗建议", "预后评估"]  # 与候选集严格对应

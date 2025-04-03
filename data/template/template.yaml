@@ -1,0 +1,52 @@
+# template.yaml
+entities:
+  - label: Formula
+    description: 处方名
+    example: "麻黄汤"
+    instruction: 识别输入文本中的处方名称
+  
+  - label: Herb
+    description: 中草药成分
+    example: "藿香、紫苏"
+    instruction: 识别处方中的组成药材
+  
+  - label: Therapy
+    description: 治疗功效
+    example: "芳香化浊、疏邪解表"
+    instruction: 识别处方的治疗作用
+
+relations:
+  - type: HAS_HERB
+    from: Formula
+    to: Herb
+    description: 处方与组成药材的包含关系
+  
+  - type: HAS_THERAPY 
+    from: Formula
+    to: Therapy
+    description: 处方与治疗功效的关联关系
+
+output_format:
+  structure:
+    - id: int
+      attributes:
+        name: str
+        label: str
+        composition: list
+        function: list
+      relations: list
+  example: |
+    [
+      {
+        "id": 0,
+        "attributes": {
+          "name": "藿香正气散",
+          "label": "Formula",
+          "composition": ["藿香","紫苏"],
+          "function": ["芳香化浊","疏邪解表"]
+        },
+        "relations": [
+          {"Formula": "藿香正气散", "Herb": "藿香", "Relation": "HAS_HERB"}
+        ]
+      }
+    ]

@@ -1,0 +1,44 @@
+### python gitignore
+__pycache__/
+*.pyc
+
+### embedding models gitignore
+/models/BAAI/*
+
+### test gitignore
+test/*
+
+### Vue gitignore
+dist
+node_modules
+
+### common gitignore
+.DS_Store
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+log
+logs
+*.log.*
+*.db
+*.lock
+tmp
+cache
+
+### IDE
+.vscode
+.idea
+*.nogit.*
+
+*.pdf
+src/data
+*/package-lock.json
+web/package-lock.json
+saves
+notebooks
+graphrag
+docker/volumes
